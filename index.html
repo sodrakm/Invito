@@ -6,53 +6,54 @@
     <title>Vuoi venire?</title>
     <style>
         body {
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #ffe6e6;
+            overflow: hidden;
             text-align: center;
         }
         h1 {
             color: #d32f2f;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            margin-bottom: 50px;
         }
-        .buttons {
+        .box {
             position: relative;
             width: 100%;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            height: 150px;
         }
         button {
-            padding: 12px 30px;
+            padding: 15px 35px;
             font-size: 1.2rem;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
         }
         #yesBtn {
             background-color: #4CAF50;
             color: white;
+            position: absolute;
+            left: 30%;
+            transform: translateX(-50%);
         }
         #noBtn {
             background-color: #f44336;
             color: white;
             position: absolute;
+            left: 70%;
+            transform: translateX(-50%);
         }
         #message {
             display: none;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #d32f2f;
-            margin-top: 20px;
             font-weight: bold;
         }
     </style>
@@ -61,32 +62,27 @@
 
     <h1 id="question">Vuoi venire?</h1>
     
-    <div class="buttons" id="buttonContainer">
-        <button id="yesBtn" onclick="sayYes()">Sì</button>
-        <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+    <div class="box" id="area">
+        <button id="yesBtn" onclick="ok()">Sì</button>
+        <button id="noBtn" onmouseover="scappa()" ontouchstart="scappa()" onclick="scappa()">No</button>
     </div>
 
     <div id="message">Evviva! 🎉❤️</div>
 
     <script>
-        function moveButton() {
-            const noBtn = document.getElementById('noBtn');
-            const maxX = window.innerWidth - noBtn.offsetWidth - 50;
-            const maxY = window.innerHeight - noBtn.offsetHeight - 50;
-            
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
+        function scappa() {
+            const btn = constNo = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 200);
+            constNo.style.left = x + 'px';
+            constNo.style.top = y + 'px';
         }
 
-        function sayYes() {
+        function ok() {
             document.getElementById('question').style.display = 'none';
-            document.getElementById('buttonContainer').style.display = 'none';
+            document.getElementById('area').style.display = 'none';
             document.getElementById('message').style.display = 'block';
         }
     </script>
-
 </body>
 </html>
